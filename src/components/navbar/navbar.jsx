@@ -12,7 +12,7 @@ class Navbar extends Component {
         <a className="navbar-brand" href="#">
           <img
             className="kdog-brand"
-            src="./kdog-brand-image.gif"
+            src="../././kdog-brand-image.gif"
             alt="kdod brand"
           />
         </a>

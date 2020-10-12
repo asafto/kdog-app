@@ -1,0 +1,12 @@
+
+@media (max-width: 768px) {
+    #root > div > main > div > div.col-12.col-md-11.col-lg-6.m-auto{
+        margin-top: 5rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    #root > div > main > div > div.col-12.col-md-11.col-lg-6.m-auto{
+        margin-top: 1rem !important;
+    }
+}

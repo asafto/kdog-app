@@ -2,6 +2,7 @@ import React from 'react';
 
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
+import Home from './components/home/home';
 
 import './App.scss';
 
@@ -11,7 +12,9 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <main className="container flex-fill m-2">main</main>
+      <main className="container flex-fill pb-2">
+        <Home />
+      </main>
       <footer>
         <Footer />
       </footer>
