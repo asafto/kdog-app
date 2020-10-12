@@ -1,6 +1,19 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## General
+---
+Kdog-app is a React project for creating and sharing posts for our loved ones (DOGS... That is!).
+
+The application allows any user to view posts and images, but only registered users can add, change or delete posts.
+
+This application is created with love, and is aimed for the use of any dog lover out there. Feel free to forward and promote it.
+
+## Note
+---
+Please be aware that the content published in this application is available to all users. As such, any misconduct, violent posts and comments or negative statements from all kinds are not allowed in Kdog, and will be deleted without any warning by Kdog admin. Users that will be using such missconduct will be deleted from the system. 
+
+
+## Available Scripts    
 
 In the project directory, you can run:
 
