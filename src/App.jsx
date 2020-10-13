@@ -1,4 +1,5 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
@@ -13,7 +14,9 @@ function App() {
         <Navbar />
       </header>
       <main className="container flex-fill pb-2">
-        <Home />
+        <Switch>
+          <Route path="/" exact component={Home} />
+        </Switch>
       </main>
       <footer>
         <Footer />

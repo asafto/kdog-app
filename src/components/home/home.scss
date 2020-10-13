@@ -1,12 +1,17 @@
-
 @media (max-width: 768px) {
-    #root > div > main > div > div.col-12.col-md-11.col-lg-6.m-auto{
-        margin-top: 5rem !important;
-    }
+    #root > div > main > div > div.col-12.col-md-11.col-lg-5.m-auto {
+    margin-top: 3rem !important;
+  }
+  #root > div > main > div > div:nth-child(2) > div > p {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 576px) {
-    #root > div > main > div > div.col-12.col-md-11.col-lg-6.m-auto{
-        margin-top: 1rem !important;
-    }
+  #root > div > main > div > div.col-12.col-md-11.col-lg-5.m-auto {
+    margin-top: 3rem !important;
+  }
+  #root > div > main > div > div:nth-child(2) > div > p {
+    font-size: 0.9rem;
+  }
 }

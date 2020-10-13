@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 
-import { FaSignInAlt, FaUserPlus, MdHome, IoMdChatboxes } from 'react-icons/all';
+import {
+  FaSignInAlt,
+  FaUserPlus,
+  MdHome,
+  IoMdChatboxes,
+} from 'react-icons/all';
 
 import './navbar.scss';
 
@@ -8,14 +14,14 @@ class Navbar extends Component {
   state = {};
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-light shadow-lg" id="navbar">
-        <a className="navbar-brand" href="#">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-light" id="navbar">
+        <Link className="navbar-brand" to="/">
           <img
             className="kdog-brand"
             src="../././kdog-brand-image.gif"
             alt="kdod brand"
           />
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -30,38 +36,38 @@ class Navbar extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <a
+              <NavLink
                 className="nav-link d-flex flex-column align-items-center"
-                href="#">
+                to="/feed">
                 <MdHome className="custom-icon" />
                 Kdog Feed
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a
+              <NavLink
                 className="nav-link d-flex flex-column align-items-center"
-                href="#">
+                to="/chat">
                 <IoMdChatboxes className="custom-icon" />
                 Kdog Chat
-              </a>
+              </NavLink>
             </li>
           </ul>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <a
+              <NavLink
                 className="nav-link d-flex flex-column align-items-center"
-                href="#">
-                <FaSignInAlt className="custom-icon"/>
+                to="/signin">
+                <FaSignInAlt className="custom-icon" />
                 Sign in
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a
+              <NavLink
                 className="nav-link d-flex flex-column align-items-center"
-                href="#">
-                <FaUserPlus className="custom-icon"/>
+                to="/signup">
+                <FaUserPlus className="custom-icon" />
                 Sign up
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>

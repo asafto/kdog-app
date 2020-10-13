@@ -5,26 +5,26 @@ class Home extends Component {
   state = {};
   render() {
     return (
-      <div className="container mx-auto">
+      <div className="home m-auto">
         <div className="row">
-          <div className="col-12 mt-3 text-center">
-            <h2>Kdog App</h2>
-            <h5>Made With Love For All Dog Lovers</h5>
+          <div className="col-12 mt-2 text-center">
+            <h1>Kdog App</h1>
+            <h4>Made With Love For All Dog Lovers</h4>
           </div>
         </div>
         <div className="row">
-          <div className="col-12">
-            <p className="text-center mt-2">Post pictures and stories</p>
-            <p className="text-center mt-2">Chat with near-by Kdog friends</p>
-            <p className="text-center mt-2">
+          <div className="col-12 mt-2">
+            <p className="text-center">Post pictures and share the love</p>
+            <p className="text-center">Schedule play-dates with Kdog friends</p>
+            <p className="text-center">
               Find dog-walkers and vetrinars nearby
             </p>
-            <p className="text-center mt-2">
-              Purchase Kdog products with Kdog discounts
+            <p className="text-center">
+              Buy dog products with Kdog discounts
             </p>
           </div>
         </div>
-        <div className="col-12 col-md-11 col-lg-6 m-auto">
+        <div className="col-12 col-md-11 col-lg-5 m-auto">
           <img
             src="../././miko.jpg"
             alt="Miko"
