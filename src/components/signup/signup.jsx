@@ -58,7 +58,7 @@ class Signup extends Form {
 
   render() {
     return (
-      <div className="container">
+      <div className=" signup container">
         <PageHeader titleText="Sign up for Kdog app" />
         <div className="row">
           <div className="col-12">

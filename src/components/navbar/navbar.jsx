@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { } from '../../../public'
 import { NavLink, Link } from 'react-router-dom';
 
 import {
@@ -7,6 +6,8 @@ import {
   FaUserPlus,
   MdHome,
   IoMdChatboxes,
+  RiLogoutCircleFill,
+  FaUserCircle,
 } from 'react-icons/all';
 
 import './navbar.scss';
@@ -14,6 +15,8 @@ import './navbar.scss';
 class Navbar extends Component {
   state = {};
   render() {
+    const { user } = this.props;
+    const userName = user && user.name.split(' ')[0];
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-light" id="navbar">
         <Link className="navbar-brand" to="/">
@@ -22,11 +25,6 @@ class Navbar extends Component {
             src="kdog-brand-image.gif"
             alt="kdod brand"
           />
-          {/* <img
-            className="kdog-brand"
-            src="../../.././kdog-brand-image.gif"
-            alt="kdod brand"
-          /> */}
         </Link>
         <button
           className="navbar-toggler"
@@ -59,22 +57,46 @@ class Navbar extends Component {
             </li>
           </ul>
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <NavLink
-                className="nav-link d-flex flex-column align-items-center"
-                to="/signin">
-                <FaSignInAlt className="custom-icon" />
-                Sign in
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link d-flex flex-column align-items-center"
-                to="/signup">
-                <FaUserPlus className="custom-icon" />
-                Sign up
-              </NavLink>
-            </li>
+            {!user && (
+              <React.Fragment>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link d-flex flex-column align-items-center"
+                    to="/signin">
+                    <FaSignInAlt className="custom-icon" />
+                    Sign in
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link d-flex flex-column align-items-center"
+                    to="/signup">
+                    <FaUserPlus className="custom-icon" />
+                    Sign up
+                  </NavLink>
+                </li>
+              </React.Fragment>
+            )}
+            {user && (
+              <React.Fragment>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link d-flex flex-column align-items-center"
+                    to="/userDetails">
+                    <FaUserCircle className="custom-icon" />
+                    Hello {userName}
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link d-flex flex-column align-items-center"
+                    to="/logout">
+                    <RiLogoutCircleFill className="custom-icon" />
+                    Logout
+                  </NavLink>
+                </li>
+              </React.Fragment>
+            )}
           </ul>
         </div>
       </nav>

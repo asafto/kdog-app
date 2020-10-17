@@ -8,6 +8,8 @@ import PageHeader from '../common/pageHeader';
 
 import userService from '../../services/userService';
 
+import './signin.scss';
+
 class Signin extends Form {
   state = {
     data: { email: '', password: '' },
@@ -40,7 +42,7 @@ class Signin extends Form {
     // if (userService.getCurrentUser()) return <Redirect to="/" />;
 
     return (
-      <div className="container">
+      <div className="signin container">
         <PageHeader titleText="Sign in with your details" />
         <div className="row">
           <div className="col-12">
