@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { } from '../../../public'
 import { NavLink, Link } from 'react-router-dom';
 
 import {
@@ -18,9 +19,14 @@ class Navbar extends Component {
         <Link className="navbar-brand" to="/">
           <img
             className="kdog-brand"
-            src="../././kdog-brand-image.gif"
+            src="kdog-brand-image.gif"
             alt="kdod brand"
           />
+          {/* <img
+            className="kdog-brand"
+            src="../../.././kdog-brand-image.gif"
+            alt="kdod brand"
+          /> */}
         </Link>
         <button
           className="navbar-toggler"

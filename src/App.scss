@@ -11,4 +11,8 @@ form .kdog-button {
       background: rgba(110, 66, 107, 0.9) ;
       border-color: #6e426b;
   }
+  &:disabled {
+    background: rgb(110, 66, 107) ;
+      border-color: #6e426b;
+  }
 }

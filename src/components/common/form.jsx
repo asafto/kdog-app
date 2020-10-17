@@ -84,7 +84,7 @@ class Form extends Component {
   };
 
   renderButton = (label) => {
-    return <button className="btn btn-primary kdog-button">{label}</button>;
+    return <button className="btn btn-primary kdog-button" disabled={this.validate()}>{label}</button>;
   };
 }
 

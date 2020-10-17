@@ -1,5 +1,11 @@
 import React from 'react';
 import Joi from 'joi-browser';
+import { toast } from 'react-toastify';
+// import { Redirect } from "react-router-dom";
+
+import http from '../../services/httpService';
+// import userService from "../services/userService";
+import { apiUrl } from '../../config.json';
 
 import Form from '../common/form';
 import PageHeader from '../common/pageHeader';
@@ -21,13 +27,33 @@ class Signup extends Form {
   schema = {
     name: Joi.string().required().min(2).max(255).label('Name'),
     email: Joi.string().min(6).max(255).required().email().label('Email'),
-    password: Joi.string().required().min(6).max(1024).label('Password'),
-    birthdate: Joi.date().label('Birth date'),
+    password: Joi.string().min(6).max(1024).required().label('Password'),
+    birthdate: Joi.date().label('Birthdate'),
     gender: Joi.string().valid('Female', 'Male', 'Other').label('Gender'),
   };
 
-  doSubmit = () => {
-    console.log('submit', this.state);
+  doSubmit = async () => {
+    const { history } = this.props;
+
+    const data = { ...this.state.data, role: 'Regular' };
+    try {
+      await http.post(`${apiUrl}/users`, data);
+      history.push('/signin');
+      toast('You are now a Kdog user! sign in and join the party!', {
+        position: 'top-center',
+        type: 'success',
+        // closeOnClick: true
+      });
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        this.setState({
+          errors: {
+            ...this.state.errors,
+            email: 'Email is already registered',
+          },
+        });
+      }
+    }
   };
 
   render() {
