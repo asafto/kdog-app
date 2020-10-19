@@ -1,10 +1,10 @@
 import React from 'react';
 import Joi from 'joi-browser';
 import { toast } from 'react-toastify';
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import http from '../../services/httpService';
-// import userService from "../services/userService";
+import userService from "../../services/userService";
 import { apiUrl } from '../../config.json';
 
 import Form from '../common/form';
@@ -42,7 +42,6 @@ class Signup extends Form {
       toast('You are now a Kdog user! sign in and join the party!', {
         position: 'top-center',
         type: 'success',
-        // closeOnClick: true
       });
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -57,6 +56,8 @@ class Signup extends Form {
   };
 
   render() {
+    if (userService.getCurrentUser()) return <Redirect to="/" />;
+
     return (
       <div className=" signup container">
         <PageHeader titleText="Sign up for Kdog app" />

@@ -1,9 +1,8 @@
-import jwtDecode from "jwt-decode";
+import jwtDecode from 'jwt-decode';
 
-import http from "./httpService";
-import { apiUrl } from "../config.json";
-
-const tokenKey = "token";
+import http from './httpService';
+import { apiUrl } from '../config.json';
+const tokenKey = 'token';
 
 export function getJwt() {
   return localStorage.getItem(tokenKey);
@@ -11,6 +10,11 @@ export function getJwt() {
 
 export function logout() {
   localStorage.removeItem(tokenKey);
+}
+
+export async function getUserById(user_id) {
+    const { data } = await http.get(`${apiUrl}/users/${user_id}`);
+    return data;
 }
 
 export function getCurrentUser() {
@@ -32,4 +36,5 @@ export default {
   getCurrentUser,
   logout,
   getJwt,
+  getUserById,
 };

@@ -1,0 +1,24 @@
+form .kdog-button {
+    background: #6e426b;
+    color: #faebd7;
+    border-color: #6e426b;
+    outline: none;
+    padding: 8px;
+    border-radius: 3px;
+    &:hover {
+      background: rgba(110, 66, 107, 0.9);
+      color: #faebd7;
+      text-decoration: none;
+      border-color: #6e426b;
+    }
+    &:active {
+      background: #6e426b;
+      color: #faebd7;
+      border-color: #6e426b;
+    }
+    &:disabled {
+      background: rgb(110, 66, 107);
+      border-color: #6e426b;
+    }
+  }
+  

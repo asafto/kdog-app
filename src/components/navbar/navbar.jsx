@@ -47,6 +47,7 @@ class Navbar extends Component {
                 Kdog Feed
               </NavLink>
             </li>
+            {user && (
             <li className="nav-item">
               <NavLink
                 className="nav-link d-flex flex-column align-items-center"
@@ -55,8 +56,10 @@ class Navbar extends Component {
                 Kdog Chat
               </NavLink>
             </li>
+            )} 
           </ul>
           <ul className="navbar-nav ml-auto">
+            {/* when user is logged out */}
             {!user && (
               <React.Fragment>
                 <li className="nav-item">
@@ -77,6 +80,7 @@ class Navbar extends Component {
                 </li>
               </React.Fragment>
             )}
+            {/* when user is logged in */}
             {user && (
               <React.Fragment>
                 <li className="nav-item">

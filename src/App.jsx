@@ -9,6 +9,7 @@ import Home from './components/home/home';
 import Signup from './components/signup/signup';
 import Signin from './components/signin/signin';
 import Logout from './components/logout/logout';
+import Feed from './components/feed/feed';
 
 import userService from './services/userService';
 // import http from './services/httpService';
@@ -34,6 +35,10 @@ class App extends Component {
         </header>
         <main className="container flex-fill pb-2">
           <Switch>
+            <Route
+              path="/feed"
+              render={(props) => <Feed {...props} user={user} />}
+            />
             <Route path="/logout" component={Logout} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />
