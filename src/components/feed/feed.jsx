@@ -57,7 +57,7 @@ class Feed extends Component {
           ) : (
             <div className="row mb-2">
               {posts.map((post) => {
-                return <Post key={post._id} post={post} />;
+                return <Post key={post._id} post={post} signedInUser={user} />;
               })}
             </div>
           )}

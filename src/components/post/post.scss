@@ -1,11 +1,19 @@
 .card {
   min-width: 320px;
-  border-radius: 10px;
-  box-shadow: 5px 5px 3px 0px rgba(0, 0, 0, 0.85);
-  .user-icon {
-    height: 1.5rem;
-    width: 1.5rem;
-    color: #6e426b;
+  border-radius: 10px !important;
+  box-shadow: 8px 8px 3px 0px rgba(0, 0, 0, 0.2);
+  .user-box{
+    font-size: 0.9rem;
+    margin-left: -8px;
+    .user-icon {
+      height: 1.5rem;
+      width: 1.5rem;
+      color: #6e426b;
+    }
+  }
+  .date-box{
+    font-size: 0.8rem;
+    margin-right: -8px;
   }
   .post-text {
     display: inline-block;

@@ -1,16 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
+// sass variables
+// $kdogPurple: #6e426b;
+// $kdogBright: #faebd7;
+// $kdogPurpleHover: rgba(110, 66, 107, 0.9);
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
   outline: none;
+  text-decoration: none;
 }
 
 body {
   font-family: 'Montserrat', sans-serif;
   background: #faebd7;
-  color: #6e426b;
+  color: #6e426b;;
   min-height: 100vh;
 }

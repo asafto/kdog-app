@@ -17,7 +17,7 @@ class Post extends Component {
   }
 
   render() {
-    const { post } = this.props;
+    const { post, signedInUser } = this.props;
     const { author } = this.state;
     return (
       <div className="card col-12 col-md-5 col-lg-4 m-3">

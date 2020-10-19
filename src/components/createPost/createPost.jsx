@@ -1,0 +1,3 @@
+
+
+import 'createPost.scss';
