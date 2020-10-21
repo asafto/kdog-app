@@ -2,7 +2,7 @@
 //   flex: 1 1 auto;
 // }
 
-.kdog-button {
+.kdog-submit-button {
   background: #6e426b;;
   color: #faebd7;
   border-color: #6e426b;
@@ -12,7 +12,6 @@
   &:hover {
     background: rgba(110, 66, 107, 0.9);
     color: #faebd7;
-    // text-decoration: none;
     border-color: #6e426b;
   }
   &:active {
@@ -23,6 +22,28 @@
   &:disabled {
     background: rgb(110, 66, 107);
     border-color: #6e426b;
+  }
+}
+.kdog-cancel-button {
+  background: #969696;;
+  color: #faebd7;
+  border-color: #969696;
+  outline: none;
+  padding: 8px;
+  border-radius: 3px;
+  &:hover {
+    background: rgba(150, 150, 150, 0.9);
+    color: #faebd7;
+    border-color: #969696;
+  }
+  &:active {
+    background: #969696;
+    color: #faebd7;
+    border-color: #969696;
+  }
+  &:disabled {
+    background: #969696;
+    border-color: #969696;
   }
 }
 

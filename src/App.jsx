@@ -10,6 +10,7 @@ import Signup from './components/signup/signup';
 import Signin from './components/signin/signin';
 import Logout from './components/logout/logout';
 import Feed from './components/feed/feed';
+import CreatePost from './components/createPost/createPost';
 
 import userService from './services/userService';
 // import http from './services/httpService';
@@ -39,6 +40,7 @@ class App extends Component {
               path="/feed"
               render={(props) => <Feed {...props} user={user} />}
             />
+            <Route path="/createPost" component={CreatePost} />
             <Route path="/logout" component={Logout} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />

@@ -69,7 +69,7 @@ class Signup extends Form {
         <div className="row">
           <div className="col-lg-6 m-auto">
             <form onSubmit={this.handleSubmit} autoComplete="off" noValidate>
-              {this.renderInput('name', '* Name')}
+              {this.renderInput('name', '* Name', 'name')}
               {this.renderInput('email', '* Email', 'email')}
               {this.renderInput('password', '* Password', 'password')}
               {this.renderInput('birthdate', 'Birthdate', 'date')}

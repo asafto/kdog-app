@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
-import { FaUserCircle, AiFillLike, FaComment } from 'react-icons/all';
+import {
+  FaUserCircle,
+  AiFillLike,
+  FaComment,
+  AiFillEdit,
+} from 'react-icons/all';
 import userService from '../../services/userService';
 
 import { imageUrl } from '../../config.json';
@@ -40,14 +45,22 @@ class Post extends Component {
         />
         <div className="d-flex flex-row justify-content-between align-items-center p-2">
           <div className="d-flex flex-row justify-content-center align-items-center">
-            <button className="action-button">
+            <button
+              className="action-button"
+              disabled={signedInUser ? false : true}>
               <AiFillLike className="custom-icon" />
+              <span className="ml-1">{`${post.likes.length} likes`}</span>
             </button>
-            <span className="ml-1">{`${post.likes.length} likes`}</span>
           </div>
-          <button className="action-button">
+          <button
+            className="action-button"
+            disabled={signedInUser ? false : true}>
             <FaComment className="custom-icon" />
           </button>
+          {signedInUser && signedInUser._id === post.author && <button
+            className="action-button">
+            <AiFillEdit className="custom-icon" />
+          </button>}
         </div>
         <div className="card-footer">this is the comments placeholder</div>
       </div>
