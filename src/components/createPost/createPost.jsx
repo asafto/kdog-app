@@ -11,38 +11,38 @@ import './createPost.scss';
 
 const CreatePost = () => {
   const createPostSchema = yup.object().shape({
-    title: yup.string().min(2).max(255).required(),
-    image: yup.mixed().required(),
-    tags: yup.array(),
+    text: yup.string().min(2).max(255).required(),
+    image: yup.string().required(),
+    // tags: yup.array(),
   });
 
-  const convertToFormData = (values) => {
-    const data = new FormData();
-    for (let key in values) {
-      Array.isArray(values[key])
-        ? values[key].forEach((value) => data.append(key + '[]', value))
-        : data.append(key, values[key]);
-    }
-    return data;
-  };
+//   const convertToFormData = (values) => {
+//     const data = new FormData();
+//     for (let key in values) {
+//       Array.isArray(values[key])
+//         ? values[key].forEach((value) => data.append(key + '[]', value))
+//         : data.append(key, values[key]);
+//     }
+//     return data;
+//   };
 
-  const doSubmit = async (values) => {
-    try {
-      const { history } = this.props;
-      const formData = this.convertToFormData(values);
-      await postService.createPost(formData);
-      history.push('/feed');
-      toast('You are now a Kdog user! sign in and join the party!', {
-        position: 'top-center',
-        type: 'success',
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+//   const doSubmit = async (values) => {
+//     try {
+//       const { history } = this.props;
+//       const formData = this.convertToFormData(values);
+//       await postService.createPost(formData);
+//       history.push('/feed');
+//       toast('You are now a Kdog user! sign in and join the party!', {
+//         position: 'top-center',
+//         type: 'success',
+//       });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
 
   return (
-    <div className=" signup container">
+    <div className="container">
       <PageHeader titleText="Create a New Post" />
       <div className="row">
         <div className="col-12">
@@ -52,44 +52,47 @@ const CreatePost = () => {
       <div className="row">
         <div className="col-lg-6 m-auto">
           <Formik
-            initialValues={{ text: '', image: '', tags: [] }}
+            initialValues={{ text: '', image: '' }}
             validationSchema={createPostSchema}
-            onSubmit={(values) => {
-              this.doSubmit(values);
+            // onSubmit={(values) => {
+            //   this.doSubmit(values);
+            //           }}
+            onSubmit={(values, { setSubmitting }) => {
+                alert('Im working');
             }}>
             {(formik) => (
               <form onSubmit={formik.handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="postText">* Post Text:</label>
+                  <label htmlFor="text">* Post Text:</label>
                   <input
-                    id="postText"
-                    name="postText"
+                    id="text"
+                    name="text"
                     className={'form-control'}
                     type="text"
-                    {...formik.getFieldProps('postText')}
+                    {...formik.getFieldProps('text')}
                   />
-                  {formik.touched.postText && formik.errors.postText ? (
+                  {formik.touched.text && formik.errors.text ? (
                     <span className="text-danger">
-                      {formik.errors.postText}
+                      {formik.errors.text}
                     </span>
                   ) : null}
                 </div>
                 <div className="form-group">
-                  <label htmlFor="postImage">* Post Image:</label>
+                  <label htmlFor="tmage">* Post Image:</label>
                   <input
-                    id="postImage"
-                    name="postImage"
+                    id="image"
+                    name="image"
                     className={'form-control'}
                     type="text"
-                    {...formik.getFieldProps('postImage')}
+                    {...formik.getFieldProps('image')}
                   />
-                  {formik.touched.postImage && formik.errors.postImage ? (
+                  {formik.touched.image && formik.errors.image ? (
                     <span className="text-danger">
-                      {formik.errors.postImage}
+                      {formik.errors.image}
                     </span>
                   ) : null}
                 </div>
-                <div className="form-group">
+                {/* <div className="form-group">
                   <label htmlFor="postTags">* Post Tags:</label>
                   <input
                     id="postTags"
@@ -103,8 +106,8 @@ const CreatePost = () => {
                       {formik.errors.postTags}
                     </span>
                   ) : null}
-                </div>
-                <button className="btn btn-primary kdog-button">
+                </div> */}
+                <button type="submit" className="btn btn-primary kdog-button">
                   Create Post
                 </button>
                 <Link
