@@ -41,9 +41,9 @@ class Feed extends Component {
             </div>
           )}
         </div>
-        <div className="d-flex col-md-6 m-auto">
+        <div className="d-flex col-md-6 justify-content-center m-auto">
           {user && (
-            <Link className="kdog-submit-button" to="/createPost">
+            <Link className="kdog-submit-button text-decoration-none" to="/createPost">
               + Add Post
             </Link>
           )}
@@ -55,7 +55,7 @@ class Feed extends Component {
           {posts.length === 0 ? (
             <h2 className="user-message">There are currently no posts on Kdog app</h2>
           ) : (
-            <div className="row mb-2">
+            <div className="row justify-content-center mb-2">
               {posts.map((post) => {
                 return <Post key={post._id} post={post} signedInUser={user} />;
               })}

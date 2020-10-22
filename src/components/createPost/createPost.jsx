@@ -46,19 +46,24 @@ class CreatePost extends Component {
             <Formik
               initialValues={{ text: '', image: null, tags: [] }}
               validationSchema={yup.object().shape({
-                text: yup.string().min(2).max(255).required().label('Post text'),
+                text: yup
+                  .string()
+                  .min(2)
+                  .max(255)
+                  .required()
+                  .label('Post text'),
                 image: yup.mixed().required(),
                 tags: yup.array(),
               })}
               onSubmit={async (values) => {
                 try {
                   const { history } = this.props;
-                  console.log(values);
                   const formData = this.convertToFormData(values);
-                  console.log(formData);
-                  await http.post(`${apiUrl}/posts`, formData, {headers: {
-                    'content-type': 'multipart/form-data'
-                }});
+                  await http.post(`${apiUrl}/posts`, formData, {
+                    headers: {
+                      'content-type': 'multipart/form-data',
+                    },
+                  });
                   history.push('/feed');
                   toast('Your post was submitted! cheers!', {
                     position: 'top-center',
@@ -67,8 +72,8 @@ class CreatePost extends Component {
                 } catch (error) {
                   console.log(error);
                 }
-              }}
-              render={(formik) => (
+              }}>
+              {(formik) => (
                 <form
                   method="post"
                   encType="multipart/form-data"
@@ -100,14 +105,20 @@ class CreatePost extends Component {
                         id="image"
                         name="image"
                         onChange={(event) => {
-                          console.log(event);
                           formik.setFieldValue(
                             'image',
                             event.currentTarget.files[0]
                           );
+                          document.querySelector('#file-name').innerHTML =
+                            event.currentTarget.files[0].name;
                         }}
                       />
-                      <span className="custom-file-label">Choose file</span>
+                      <span
+                        className="custom-file-label"
+                        id="file-name"
+                        name="file-name">
+                        Choose file
+                      </span>
                     </div>
                     {formik.touched.image && formik.errors.image ? (
                       <span className="text-danger">{formik.errors.image}</span>
@@ -145,7 +156,7 @@ class CreatePost extends Component {
                   </Link>
                 </form>
               )}
-            />
+            </Formik>
           </div>
         </div>
       </div>
