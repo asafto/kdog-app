@@ -5,12 +5,14 @@ import {
   AiFillLike,
   FaComment,
   AiFillEdit,
+  AiFillDelete
 } from 'react-icons/all';
 import userService from '../../services/userService';
 
 import { imageUrl } from '../../config.json';
 
 import './post.scss';
+import TagsList from '../tagList/tagList';
 
 class Post extends Component {
   state = {};
@@ -25,7 +27,7 @@ class Post extends Component {
     const { post, signedInUser } = this.props;
     const { author } = this.state;
     return (
-      <div className="card col-12 col-md-5 col-lg-4 m-3">
+      <div className="card col-11 col-md-5 col-lg-3 m-3">
         <div className="card-header d-flex align-items-center justify-content-between p-2">
           <div className="user-box d-flex align-items-center">
             <FaUserCircle className="user-icon" />
@@ -61,7 +63,12 @@ class Post extends Component {
             className="action-button">
             <AiFillEdit className="custom-icon" />
           </button>}
+          {signedInUser && signedInUser._id === post.author && <button
+            className="action-button">
+            <AiFillDelete className="custom-icon" />
+          </button>}
         </div>
+        <TagsList tags={post.tags}/>
         <div className="card-footer">this is the comments placeholder</div>
       </div>
     );

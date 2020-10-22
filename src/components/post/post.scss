@@ -39,11 +39,36 @@
     &:active {
       opacity: 0.5;
     }
-    .custom-icon {
-      height: 1.5rem;
-      width: 1.5rem;
-      color: #6e426b;
-      padding-bottom: 7px;
+  }
+  .custom-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    color: #6e426b;
+    padding-bottom: 7px;
+  }
+  .sm-custom-icon {
+    height: 1.8rem;
+    width: 1.8rem;
+    color: #6e426b;
+    padding-bottom: 7px;
+  }
+  .xs-custom-icon {
+    height: 2rem;
+    width: 2rem;
+    color: #6e426b;
+    padding-bottom: 7px;
+  }
+  .TagList {
+    .tag {
+      a {
+        display: inline-block;
+        font-size: 0.9rem;
+        color: #faebd7;
+        background: #4f6e42;
+        margin-right: 0.2rem;
+        padding: 0.1rem 0.2rem;
+        border-radius: 0.2rem;
+      }
     }
   }
 }

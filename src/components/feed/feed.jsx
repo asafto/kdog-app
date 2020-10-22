@@ -36,15 +36,15 @@ class Feed extends Component {
           {!user && (
             <div className="col-12 mt-2">
               <h4 className="text-center">
-                Login or signup in order to upload new posts
+                Login or signup in order to create or like posts
               </h4>
             </div>
           )}
         </div>
         <div className="d-flex col-md-6 m-auto">
           {user && (
-            <Link className="kdog-button" to="/createPost">
-              + Add New Post
+            <Link className="kdog-submit-button" to="/createPost">
+              + Add Post
             </Link>
           )}
           <div className="border border-success rounded px-5 ml-3">
