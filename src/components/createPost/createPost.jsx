@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 import TagsInput from 'react-tagsinput';
 import { FaLightbulb } from 'react-icons/all';
 
-import http from '../../services/httpService';
-import { apiUrl } from '../../config.json';
+// import http from '../../services/httpService';
+import postService from '../../services/postService';
+// import { apiUrl } from '../../config.json';
 // import postService from '../../services/postService';
 import PageHeader from '../common/pageHeader';
 
@@ -59,11 +60,7 @@ class CreatePost extends Component {
                 try {
                   const { history } = this.props;
                   const formData = this.convertToFormData(values);
-                  await http.post(`${apiUrl}/posts`, formData, {
-                    headers: {
-                      'content-type': 'multipart/form-data',
-                    },
-                  });
+                  await postService.createPost(formData);
                   history.push('/feed');
                   toast('Your post was submitted! cheers!', {
                     position: 'top-center',

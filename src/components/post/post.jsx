@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
+import { toast } from 'react-toastify';
 import {
   FaUserCircle,
   AiFillLike,
   FaComment,
   AiFillEdit,
-  AiFillDelete
+  AiFillDelete,
 } from 'react-icons/all';
 import userService from '../../services/userService';
+import postService from '../../services/postService';
 
 import { imageUrl } from '../../config.json';
 
 import './post.scss';
 import TagsList from '../tagList/tagList';
+import { Link } from 'react-router-dom';
 
 class Post extends Component {
   state = {};
@@ -22,6 +25,20 @@ class Post extends Component {
     const author = await userService.getUserById(post.author);
     this.setState({ author });
   }
+
+  // postDeleteHandler = async () => {
+  //   const { post, history } = this.props;
+  //   try {
+  //     await postService.deletePost(post._id);
+  //     history.push('/feed');
+  //     toast('Your post was deleted! hope to see a new one soon!', {
+  //       position: 'top-center',
+  //       type: 'success',
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   render() {
     const { post, signedInUser } = this.props;
@@ -59,16 +76,20 @@ class Post extends Component {
             disabled={signedInUser ? false : true}>
             <FaComment className="custom-icon" />
           </button>
-          {signedInUser && signedInUser._id === post.author && <button
-            className="action-button">
-            <AiFillEdit className="custom-icon" />
-          </button>}
-          {signedInUser && signedInUser._id === post.author && <button
-            className="action-button">
-            <AiFillDelete className="custom-icon" />
-          </button>}
+          {signedInUser && signedInUser._id === post.author && (
+            <button className="action-button">
+              <AiFillEdit className="custom-icon" />
+            </button>
+          )}
+          {signedInUser && signedInUser._id === post.author && (
+            <button className="action-button">
+              <Link to={`/deletePost/${post._id}`}>
+                <AiFillDelete className="custom-icon" />
+              </Link>
+            </button>
+          )}
         </div>
-        <TagsList tags={post.tags}/>
+        <TagsList tags={post.tags} />
         <div className="card-footer">this is the comments placeholder</div>
       </div>
     );

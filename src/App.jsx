@@ -11,6 +11,8 @@ import Signin from './components/signin/signin';
 import Logout from './components/logout/logout';
 import Feed from './components/feed/feed';
 import CreatePost from './components/createPost/createPost';
+import DeletePost from './components/deletePost/deletePost';
+import ProtectedRoute from './components/common/protectedRoute';
 
 import userService from './services/userService';
 // import http from './services/httpService';
@@ -36,11 +38,12 @@ class App extends Component {
         </header>
         <main className="container flex-fill pb-2">
           <Switch>
+            <ProtectedRoute path="/createPost" component={CreatePost} />
+            <ProtectedRoute path="/deletePost/:post_id" component={DeletePost} />
             <Route
               path="/feed"
               render={(props) => <Feed {...props} user={user} />}
             />
-            <Route path="/createPost" component={CreatePost} />
             <Route path="/logout" component={Logout} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />

@@ -1,12 +1,8 @@
-import http from "./httpService";
-import { apiUrl } from "../config.json";
+import http from './httpService';
+import { apiUrl } from '../config.json';
 
 // export function getCard(cardId) {
 //   return http.get(`${apiUrl}/cards/${cardId}`);
-// }
-
-// export function deleteCard(cardId) {
-//   return http.delete(`${apiUrl}/cards/${cardId}`);
 // }
 
 // export function editCard(card) {
@@ -15,18 +11,26 @@ import { apiUrl } from "../config.json";
 //   return http.put(`${apiUrl}/cards/${cardId}`, card);
 // }
 
-export function getAllPosts() {
-  return http.get(`${apiUrl}/posts`);
+export async function deletePost(post_id) {
+  return await http.delete(`${apiUrl}/posts/${post_id}`);
 }
 
-export function createPost(post) {
-  return http.post(`${apiUrl}/posts`, post);
+export async function getAllPosts() {
+  return await http.get(`${apiUrl}/posts`);
+}
+
+export async function createPost(post) {
+  return await http.post(`${apiUrl}/posts`, post, {
+    headers: {
+      'content-type': 'multipart/form-data',
+    },
+  });
 }
 
 export default {
   createPost,
   getAllPosts,
-//   editCard,
-//   getCard,
-//   deleteCard,
+  deletePost,
+  //   editCard,
+  //   getCard,
 };
