@@ -34,7 +34,7 @@ class Post extends Component {
             {author && <span className="pl-2">{author.name}</span>}
           </div>
           <div className="date-box">
-            <Moment format="MMM-DD-YYYY, hh:mm">{post.createdAt}</Moment>
+            <Moment format="MMM-DD-YYYY, HH:mm">{post.createdAt}</Moment>
           </div>
         </div>
         <div className="card-body px-2 post-text">

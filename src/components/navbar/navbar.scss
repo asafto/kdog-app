@@ -1,6 +1,6 @@
 #navbarSupportedContent > ul > li.nav-item > a {
   color: #faebd7;
-  &:hover{
+  &:hover {
     opacity: 0.8;
   }
 }
@@ -14,9 +14,9 @@
   width: 80px;
 }
 
-@media (max-width: 768px) {
-  #navbarSupportedContent > ul.navbar-nav > li.nav-item > a {
-    float: left;
+@media (max-width: 992px) {
+  #navbarSupportedContent > ul.navbar-nav > li > a {
+    float: left !important;
     flex-direction: row !important;
     .custom-icon {
       margin-right: 0.3rem;
@@ -28,8 +28,8 @@
 }
 
 @media (max-width: 576px) {
-  #navbarSupportedContent > ul.navbar-nav > li.nav-item > a {
-    float: left;
+  #navbarSupportedContent > ul.navbar-nav > li > a {
+    float: left !important;
     flex-direction: row !important;
     .custom-icon {
       margin-right: 0.3rem;

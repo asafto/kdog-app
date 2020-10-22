@@ -11,6 +11,7 @@ import './feed.scss';
 class Feed extends Component {
   state = {
     posts: [],
+    filteredPosts: [],
     isLoading: true,
   };
 
@@ -26,9 +27,16 @@ class Feed extends Component {
     }
   }
 
+  searchPostsHandler = (event) => {
+    const filteredPosts = this.state.posts.filter((post) =>
+      post.tags.includes(event.target.value)
+    );
+    this.setState({ filteredPosts });
+  };
+
   render() {
     const { user } = this.props;
-    const { posts } = this.state;
+    const { posts, filteredPosts } = this.state;
     return (
       <div className="container-fluid feed">
         <PageHeader titleText="Kdog Feed" className="text-center" />
@@ -41,22 +49,32 @@ class Feed extends Component {
             </div>
           )}
         </div>
-        <div className="d-flex col-md-6 justify-content-center m-auto">
+        <div className="page-actions d-flex col-12 col-md-6 justify-content-center m-auto">
           {user && (
-            <Link className="kdog-submit-button text-decoration-none" to="/createPost">
-              + Add Post
+            <Link
+              className="kdog-submit-button text-decoration-none"
+              to="/createPost">
+              Add Post
             </Link>
           )}
-          <div className="border border-success rounded px-5 ml-3">
-            Search box placeholder
-          </div>
+          <input
+            className="search-box"
+            type="search"
+            placeholder="Search Posts by Tags"
+            aria-label="Search"
+            onChange={posts && this.searchPostsHandler}
+          />
         </div>
         <div className="">
           {posts.length === 0 ? (
-            <h2 className="user-message">There are currently no posts on Kdog app</h2>
+            <h2 className="user-message">
+              There are currently no posts on Kdog app
+            </h2>
           ) : (
             <div className="row justify-content-center mb-2">
-              {posts.map((post) => {
+              {filteredPosts.length === 0 ? posts.map((post) => {
+                return <Post key={post._id} post={post} signedInUser={user} />;
+              }) : filteredPosts.map((post) => {
                 return <Post key={post._id} post={post} signedInUser={user} />;
               })}
             </div>

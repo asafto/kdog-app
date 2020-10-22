@@ -10,7 +10,7 @@ class Home extends Component {
     return (
       <div className="container home">
         <PageHeader titleText="Kdog App" className="text-center" />
-        <div className="row  m-auto">
+        <div className="row m-auto">
           <div className="col-12 mt-2">
             <h4 className="text-center">Made With Love For All Dog Lovers</h4>
             <p className="text-center">Post pictures and share the love</p>

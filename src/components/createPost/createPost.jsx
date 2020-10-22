@@ -78,8 +78,8 @@ class CreatePost extends Component {
                   method="post"
                   encType="multipart/form-data"
                   onSubmit={formik.handleSubmit}
-                  // autoComplete="off"
-                  // noValidate="novalidate"
+                  autoComplete="off"
+                  noValidate="novalidate"
                 >
                   <div className="form-group">
                     <label htmlFor="text">* Post Text:</label>
