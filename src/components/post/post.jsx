@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
-import { toast } from 'react-toastify';
 import {
   FaUserCircle,
   AiFillLike,
@@ -22,33 +21,24 @@ class Post extends Component {
 
   async componentDidMount() {
     const { post } = this.props;
-    const author = await userService.getUserById(post.author);
+    const author = await userService.getUserNameById(post.author);
     this.setState({ author });
   }
 
-  // postDeleteHandler = async () => {
-  //   const { post, history } = this.props;
-  //   try {
-  //     await postService.deletePost(post._id);
-  //     history.push('/feed');
-  //     toast('Your post was deleted! hope to see a new one soon!', {
-  //       position: 'top-center',
-  //       type: 'success',
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  likePost = () => {
+    
+  };
 
   render() {
     const { post, signedInUser } = this.props;
     const { author } = this.state;
+    const authorName = author && author.name.split(' ')[0];
     return (
       <div className="card col-11 col-md-5 col-lg-3 m-3">
         <div className="card-header d-flex align-items-center justify-content-between p-2">
           <div className="user-box d-flex align-items-center">
             <FaUserCircle className="user-icon" />
-            {author && <span className="pl-2">{author.name}</span>}
+            {author && <span className="pl-2">{authorName}</span>}
           </div>
           <div className="date-box">
             <Moment format="MMM-DD-YYYY, HH:mm">{post.createdAt}</Moment>

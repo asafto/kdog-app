@@ -12,6 +12,10 @@ export function logout() {
   localStorage.removeItem(tokenKey);
 }
 
+export async function getUserNameById(user_id) {
+    const { data } = await http.get(`${apiUrl}/users/${user_id}/name`);
+    return data;
+}
 export async function getUserById(user_id) {
     const { data } = await http.get(`${apiUrl}/users/${user_id}`);
     return data;
@@ -37,4 +41,5 @@ export default {
   logout,
   getJwt,
   getUserById,
+  getUserNameById
 };
