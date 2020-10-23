@@ -10,12 +10,6 @@ The application allows any user to view posts and images, but only registered us
 
 This application is created with love, and is aimed for the use of any dog lover out there. While not yet published, I will update here when is it available, so you can promote it to your friends.
 
-## Note
-
----
-
-Please be aware that the content published in this application is available to all users. As such, any misconduct, violent posts and comments or negative statements from all kinds are not allowed in Kdog, and will be deleted without any warning by Kdog admin. Users that will be using such missconduct will be deleted from the system.
-
 ## Available Scripts
 
 In the project directory, you can run:
