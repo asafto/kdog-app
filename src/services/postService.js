@@ -1,15 +1,17 @@
 import http from './httpService';
 import { apiUrl } from '../config.json';
 
-// export function getCard(cardId) {
-//   return http.get(`${apiUrl}/cards/${cardId}`);
-// }
+export function editPost(post_id, values) {
+  return http.patch(`${apiUrl}/posts/${post_id}`, values);
+}
 
-// export function editCard(card) {
-//   const cardId = card._id;
-//   delete card._id;
-//   return http.put(`${apiUrl}/cards/${cardId}`, card);
-// }
+export async function getPostImage(post_id,image_name) {
+  return await http.get(`${apiUrl}/posts/${post_id}/${image_name}`);
+};
+
+export async function getPost(post_id) {
+  return await http.get(`${apiUrl}/posts/${post_id}`);
+}
 
 export async function deletePost(post_id) {
   return await http.delete(`${apiUrl}/posts/${post_id}`);
@@ -31,6 +33,7 @@ export default {
   createPost,
   getAllPosts,
   deletePost,
-  //   editCard,
-  //   getCard,
+  getPost,
+  getPostImage,
+  editPost
 };

@@ -9,11 +9,31 @@ import { FaLightbulb } from 'react-icons/all';
 import postService from '../../services/postService';
 import PageHeader from '../common/pageHeader';
 
-import './createPost.scss';
+import './editPost.scss';
 
-class CreatePost extends Component {
-  state = { tags: [] };
+class EditPost extends Component {
+  state = {
+    text: '',
+    image: null,
+    tags: [],
+  };
+  async componentDidMount() {
+    const { post_id } = this.props.match.params;
+    const { data } = await postService.getPost(post_id);
+    const currentImageName = data.image.split('__')[1];
+    this.setState({
+      text: data.text,
+      tags: data.tags,
+      imageName: currentImageName,
+    });
+      console.log(this.state);
+  }
 
+  handleTextChange = (text) => {
+    this.setState({
+      text: text,
+    });
+  };
   handleTagsChange = (tags) => {
     this.setState({
       tags: tags,
@@ -33,16 +53,20 @@ class CreatePost extends Component {
   render() {
     return (
       <div className="container">
-        <PageHeader titleText="Create a New Post" />
+        <PageHeader titleText="Edit Your Post" />
         <div className="row">
           <div className="col-12">
-            <h4 className="text-center">Share the love and memories here</h4>
+            <h4 className="text-center">Fill in your card details here</h4>
           </div>
         </div>
         <div className="row">
           <div className="col-lg-6 m-auto">
             <Formik
-              initialValues={{ text: '', image: null, tags: [] }}
+              initialValues={{
+                text: this.state.text,
+                image: this.state.image,
+                tags: this.state.tags,
+              }}
               validationSchema={yup.object().shape({
                 text: yup
                   .string()
@@ -54,12 +78,13 @@ class CreatePost extends Component {
                 tags: yup.array(),
               })}
               onSubmit={async (values) => {
+                const { post_id } = this.props.match.params;
                 try {
                   const { history } = this.props;
                   const formData = this.convertToFormData(values);
-                  await postService.createPost(formData);
+                  await postService.editPost(post_id, formData);
                   history.push('/feed');
-                  toast('Your post was submitted! cheers!', {
+                  toast('Your post was updated successfully! cheers!', {
                     position: 'top-center',
                     type: 'success',
                   });
@@ -69,12 +94,11 @@ class CreatePost extends Component {
               }}>
               {(formik) => (
                 <form
-                  method="post"
+                  method="POST"
                   encType="multipart/form-data"
                   onSubmit={formik.handleSubmit}
                   autoComplete="off"
-                  noValidate="novalidate"
-                >
+                  noValidate="novalidate">
                   <div className="form-group">
                     <label htmlFor="text">* Post Text:</label>
                     <input
@@ -82,9 +106,12 @@ class CreatePost extends Component {
                       name="text"
                       className={'form-control'}
                       type="text"
-                      onChange={formik.handleChange}
-                      value={formik.values.text}
-                      // {...formik.getFieldProps('text')}
+                      value={this.state.text}
+                      onBlur={formik.handleBlur}
+                      onChange={(event) => {
+                        this.handleTextChange(event.target.value);
+                        formik.setFieldValue('text', event.target.value);
+                      }}
                     />
                     {formik.touched.text && formik.errors.text ? (
                       <span className="text-danger">{formik.errors.text}</span>
@@ -94,24 +121,31 @@ class CreatePost extends Component {
                     <label htmlFor="image">* Post Image:</label>
                     <div className="custom-file overflow-hidden">
                       <input
+                        // value={this.state.image}
                         type="file"
                         className="custom-file-input"
                         id="image"
                         name="image"
+                        onBlur={formik.handleBlur}
                         onChange={(event) => {
-                          formik.setFieldValue(
-                            'image',
-                            event.currentTarget.files[0]
-                          );
-                          document.querySelector('#file-name').innerHTML =
-                            event.currentTarget.files[0].name;
+                          if (
+                            event.currentTarget.files[0].name !==
+                            this.state.imageName
+                          ) {
+                            formik.setFieldValue(
+                              'image',
+                              event.currentTarget.files[0]
+                            );
+                            document.querySelector('#file-name').innerHTML =
+                              event.currentTarget.files[0].name;
+                          }
                         }}
                       />
                       <span
                         className="custom-file-label"
                         id="file-name"
                         name="file-name">
-                        Choose file
+                        {this.state.imageName}
                       </span>
                     </div>
                     {formik.touched.image && formik.errors.image ? (
@@ -121,13 +155,14 @@ class CreatePost extends Component {
                   <div className="form-group">
                     <label htmlFor="tags">Post Tags:</label>
                     <TagsInput
-                      value={this.state.tags}
                       id="tags"
                       name="tags"
                       className="form-control overflow-hidden tags-input"
+                      value={this.state.tags}
+                      onBlur={formik.handleBlur}
                       onChange={(tags) => {
-                        this.handleTagsChange(tags);
                         formik.setFieldValue('tags', tags);
+                        this.handleTagsChange(tags);
                       }}
                     />
                     <div className="d-flex align-items-center">
@@ -141,11 +176,11 @@ class CreatePost extends Component {
                   <button
                     type="submit"
                     className="btn btn-primary kdog-submit-button">
-                    Create Post
+                    Update Post
                   </button>
                   <Link
                     className="btn btn-primary kdog-cancel-button ml-2"
-                    to="./feed">
+                    to="/feed">
                     Cancel
                   </Link>
                 </form>
@@ -158,4 +193,4 @@ class CreatePost extends Component {
   }
 }
 
-export default CreatePost;
+export default EditPost;

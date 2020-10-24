@@ -25,9 +25,7 @@ class Post extends Component {
     this.setState({ author });
   }
 
-  likePost = () => {
-    
-  };
+  likePost = () => {};
 
   render() {
     const { post, signedInUser } = this.props;
@@ -68,7 +66,9 @@ class Post extends Component {
           </button>
           {signedInUser && signedInUser._id === post.author && (
             <button className="action-button">
-              <AiFillEdit className="custom-icon" />
+              <Link to={`/editPost/${post._id}`}>
+                <AiFillEdit className="custom-icon" />
+              </Link>
             </button>
           )}
           {signedInUser && signedInUser._id === post.author && (
