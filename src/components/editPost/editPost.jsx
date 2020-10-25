@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import TagsInput from 'react-tagsinput';
 import { FaLightbulb } from 'react-icons/all';
 
+import { imageUrl } from '../../config.json';
+
 import postService from '../../services/postService';
 import PageHeader from '../common/pageHeader';
 
@@ -16,17 +18,27 @@ class EditPost extends Component {
     text: '',
     image: null,
     tags: [],
+    imageName: '',
   };
   async componentDidMount() {
     const { post_id } = this.props.match.params;
     const { data } = await postService.getPost(post_id);
     const currentImageName = data.image.split('__')[1];
+    const fileObj = await postService.getPostImage(data._id, data.image);
+    console.log(fileObj);
+    // console.log(file.config.url);
+    // let file = new FileReader();
+    // file.readAsDataURL(fileBlob);
+    // console.log(file);
+
+    // const file = new File(fileObj, `${imageUrl}/${currentImageName}`);
+
     this.setState({
       text: data.text,
       tags: data.tags,
+      image: fileObj,
       imageName: currentImageName,
     });
-      console.log(this.state);
   }
 
   handleTextChange = (text) => {
@@ -56,7 +68,7 @@ class EditPost extends Component {
         <PageHeader titleText="Edit Your Post" />
         <div className="row">
           <div className="col-12">
-            <h4 className="text-center">Fill in your card details here</h4>
+            <h4 className="text-center">Fill in your post details here</h4>
           </div>
         </div>
         <div className="row">
@@ -78,9 +90,16 @@ class EditPost extends Component {
                 tags: yup.array(),
               })}
               onSubmit={async (values) => {
+                console.log(values);
                 const { post_id } = this.props.match.params;
+                const { history } = this.props;
                 try {
-                  const { history } = this.props;
+                  if (
+                    document.querySelector('#file-name').innerHTML ===
+                    this.state.imageName
+                  ) {
+                    values.image = this.state.image;
+                  }
                   const formData = this.convertToFormData(values);
                   await postService.editPost(post_id, formData);
                   history.push('/feed');
@@ -96,9 +115,7 @@ class EditPost extends Component {
                 <form
                   method="POST"
                   encType="multipart/form-data"
-                  onSubmit={formik.handleSubmit}
-                  autoComplete="off"
-                  noValidate="novalidate">
+                  onSubmit={formik.handleSubmit}>
                   <div className="form-group">
                     <label htmlFor="text">* Post Text:</label>
                     <input
@@ -107,7 +124,6 @@ class EditPost extends Component {
                       className={'form-control'}
                       type="text"
                       value={this.state.text}
-                      onBlur={formik.handleBlur}
                       onChange={(event) => {
                         this.handleTextChange(event.target.value);
                         formik.setFieldValue('text', event.target.value);
@@ -121,24 +137,21 @@ class EditPost extends Component {
                     <label htmlFor="image">* Post Image:</label>
                     <div className="custom-file overflow-hidden">
                       <input
-                        // value={this.state.image}
                         type="file"
                         className="custom-file-input"
                         id="image"
                         name="image"
-                        onBlur={formik.handleBlur}
                         onChange={(event) => {
-                          if (
-                            event.currentTarget.files[0].name !==
-                            this.state.imageName
-                          ) {
-                            formik.setFieldValue(
-                              'image',
-                              event.currentTarget.files[0]
-                            );
-                            document.querySelector('#file-name').innerHTML =
-                              event.currentTarget.files[0].name;
-                          }
+                          formik.setFieldValue(
+                            'image',
+                            event.currentTarget.files[0]
+                          );
+                          this.setState({
+                            image: event.currentTarget.files[0],
+                            imageName: event.currentTarget.files[0].name,
+                          });
+                          document.querySelector('#file-name').innerHTML =
+                            event.currentTarget.files[0].name;
                         }}
                       />
                       <span
@@ -159,7 +172,6 @@ class EditPost extends Component {
                       name="tags"
                       className="form-control overflow-hidden tags-input"
                       value={this.state.tags}
-                      onBlur={formik.handleBlur}
                       onChange={(tags) => {
                         formik.setFieldValue('tags', tags);
                         this.handleTagsChange(tags);

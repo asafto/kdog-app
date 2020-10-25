@@ -8,7 +8,6 @@ import {
   AiFillDelete,
 } from 'react-icons/all';
 import userService from '../../services/userService';
-import postService from '../../services/postService';
 
 import { imageUrl } from '../../config.json';
 
