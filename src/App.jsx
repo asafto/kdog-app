@@ -13,6 +13,7 @@ import Feed from './components/feed/feed';
 import CreatePost from './components/createPost/createPost';
 import DeletePost from './components/deletePost/deletePost';
 import EditPost from './components/editPost/editPost';
+import LikePost from './components/likePost/likePost';
 import ProtectedRoute from './components/common/protectedRoute';
 
 import userService from './services/userService';
@@ -42,6 +43,7 @@ class App extends Component {
             <ProtectedRoute path="/createPost" component={CreatePost} />
             <ProtectedRoute path="/deletePost/:post_id" component={DeletePost} />
             <ProtectedRoute path="/editPost/:post_id" component={EditPost} />
+            <ProtectedRoute path="/likePost/:post_id" component={LikePost} />
             <Route
               path="/feed"
               render={(props) => <Feed {...props} user={user} />}

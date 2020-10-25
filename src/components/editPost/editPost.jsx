@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 import TagsInput from 'react-tagsinput';
 import { FaLightbulb } from 'react-icons/all';
 
-import { imageUrl } from '../../config.json';
-
 import postService from '../../services/postService';
 import PageHeader from '../common/pageHeader';
 
@@ -23,21 +21,15 @@ class EditPost extends Component {
   async componentDidMount() {
     const { post_id } = this.props.match.params;
     const { data } = await postService.getPost(post_id);
-    const currentImageName = data.image.split('__')[1];
+    const imageName = data.image.split('__')[1];
     const fileObj = await postService.getPostImage(data._id, data.image);
     console.log(fileObj);
-    // console.log(file.config.url);
-    // let file = new FileReader();
-    // file.readAsDataURL(fileBlob);
-    // console.log(file);
-
-    // const file = new File(fileObj, `${imageUrl}/${currentImageName}`);
 
     this.setState({
       text: data.text,
       tags: data.tags,
       image: fileObj,
-      imageName: currentImageName,
+      imageName: imageName,
     });
   }
 
@@ -63,6 +55,7 @@ class EditPost extends Component {
   };
 
   render() {
+    const { text, image, tags } = this.state;
     return (
       <div className="container">
         <PageHeader titleText="Edit Your Post" />
@@ -75,9 +68,9 @@ class EditPost extends Component {
           <div className="col-lg-6 m-auto">
             <Formik
               initialValues={{
-                text: this.state.text,
-                image: this.state.image,
-                tags: this.state.tags,
+                text: text,
+                image: image,
+                tags: tags,
               }}
               validationSchema={yup.object().shape({
                 text: yup

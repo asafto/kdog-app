@@ -1,8 +1,11 @@
 import http from './httpService';
 import { apiUrl } from '../config.json';
 
-export function editPost(post_id, values) {
-  return http.patch(`${apiUrl}/posts/${post_id}`, values);
+export async function likeUnlikePost(post_id) {
+  return await http.post(`${apiUrl}/posts/${post_id}/like`);
+}
+export async function editPost(post_id, values) {
+  return await http.patch(`${apiUrl}/posts/${post_id}`, values);
 }
 
 export async function getPostImage(post_id,image_name) {
@@ -35,5 +38,6 @@ export default {
   deletePost,
   getPost,
   getPostImage,
-  editPost
+  editPost,
+  likeUnlikePost
 };

@@ -1,30 +1,35 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 import {
   FaUserCircle,
   AiFillLike,
   FaComment,
   AiFillEdit,
-  AiFillDelete,
+  MdDeleteForever,
 } from 'react-icons/all';
-import userService from '../../services/userService';
 
+import TagsList from '../tagList/tagList';
+
+import userService from '../../services/userService';
+import postService from '../../services/postService';
 import { imageUrl } from '../../config.json';
 
 import './post.scss';
-import TagsList from '../tagList/tagList';
-import { Link } from 'react-router-dom';
 
 class Post extends Component {
-  state = {};
+  state = {
+    author: '',
+    likes: []
+  };
 
   async componentDidMount() {
     const { post } = this.props;
     const author = await userService.getUserNameById(post.author);
-    this.setState({ author });
+    this.setState({
+      author: author,
+    });
   }
-
-  likePost = () => {};
 
   render() {
     const { post, signedInUser } = this.props;
@@ -54,7 +59,13 @@ class Post extends Component {
             <button
               className="action-button"
               disabled={signedInUser ? false : true}>
-              <AiFillLike className="custom-icon" />
+              <Link to={`/likePost/${post._id}`}>
+                {post.likes.length > 0 && post.likes.includes(signedInUser._id) ? (
+                  <AiFillLike className="sm-custom-icon liked" />
+                ) : (
+                    <AiFillLike className="custom-icon" />
+                  )}
+              </Link>
               <span className="ml-1">{`${post.likes.length} likes`}</span>
             </button>
           </div>
@@ -66,14 +77,14 @@ class Post extends Component {
           {signedInUser && signedInUser._id === post.author && (
             <button className="action-button">
               <Link to={`/editPost/${post._id}`}>
-                <AiFillEdit className="custom-icon" />
+                <AiFillEdit className="sm-custom-icon" />
               </Link>
             </button>
           )}
           {signedInUser && signedInUser._id === post.author && (
             <button className="action-button">
               <Link to={`/deletePost/${post._id}`}>
-                <AiFillDelete className="custom-icon" />
+                <MdDeleteForever className="sm-custom-icon" />
               </Link>
             </button>
           )}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { BeatLoader } from 'react-spinners';
 
 import PageHeader from '../common/pageHeader';
 
@@ -36,7 +37,15 @@ class Feed extends Component {
 
   render() {
     const { user } = this.props;
-    const { posts, filteredPosts } = this.state;
+    const { posts, filteredPosts, isLoading } = this.state;
+
+    if (isLoading) {
+      return (
+        <div className="loader">
+          <BeatLoader color={'#4f6e42'} size={60} sizeUnit={'px'} />
+        </div>
+      );
+    }
     return (
       <div className="container-fluid feed">
         <PageHeader titleText="Kdog Feed" className="text-center" />
@@ -72,11 +81,17 @@ class Feed extends Component {
             </h2>
           ) : (
             <div className="row justify-content-center mb-2">
-              {filteredPosts.length === 0 ? posts.map((post) => {
-                return <Post key={post._id} post={post} signedInUser={user} />;
-              }) : filteredPosts.map((post) => {
-                return <Post key={post._id} post={post} signedInUser={user} />;
-              })}
+              {filteredPosts.length === 0
+                ? posts.map((post) => {
+                    return (
+                      <Post key={post._id} post={post} signedInUser={user} />
+                    );
+                  })
+                : filteredPosts.map((post) => {
+                    return (
+                      <Post key={post._id} post={post} signedInUser={user} />
+                    );
+                  })}
             </div>
           )}
         </div>
