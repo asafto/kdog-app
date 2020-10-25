@@ -62,7 +62,7 @@ class Signup extends Form {
       <div className=" signup container">
         <PageHeader titleText="Sign up for Kdog app" className="text-center page-header" />
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 page-subHeader">
             <h4 className="text-center">Open a new Kdog account for free</h4>
           </div>
         </div>

@@ -45,7 +45,7 @@ class Signin extends Form {
       <div className="signin container">
         <PageHeader titleText="Sign in with your details" className="text-center page-header" />
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 page-subHeader">
             <h4 className="text-center">Login and join the party!</h4>
           </div>
         </div>
