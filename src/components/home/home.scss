@@ -1,7 +1,35 @@
 @media (max-width: 992px) {
-
+  .page-header {
+    font-size: 3rem;
+  }
+  .home-text {
+    h4 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    p {
+      font-size: 1.5rem;
+    }
+  }
+  .home-image {
+    margin-top: 3rem;
+  }
 }
 
 @media (max-width: 576px) {
-  
+  .page-header {
+    font-size: 2rem;
+  }
+  .home-text {
+    h4 {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+    p {
+      font-size: 0.8rem;
+    }
+  }
+  .home-image {
+    margin-top: 3rem;
+  }
 }

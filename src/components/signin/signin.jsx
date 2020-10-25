@@ -43,14 +43,14 @@ class Signin extends Form {
 
     return (
       <div className="signin container">
-        <PageHeader titleText="Sign in with your details" />
+        <PageHeader titleText="Sign in with your details" className="text-center page-header" />
         <div className="row">
           <div className="col-12">
             <h4 className="text-center">Login and join the party!</h4>
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-6 m-auto">
+          <div className="col-md-8 col-lg-6 m-auto">
             <form onSubmit={this.handleSubmit} autoComplete="off" noValidate>
               {this.renderInput('email', 'Email', 'email')}
               {this.renderInput('password', 'Password', 'password')}

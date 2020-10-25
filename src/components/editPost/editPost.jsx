@@ -23,7 +23,6 @@ class EditPost extends Component {
     const { data } = await postService.getPost(post_id);
     const imageName = data.image.split('__')[1];
     const fileObj = await postService.getPostImage(data._id, data.image);
-    console.log(fileObj);
 
     this.setState({
       text: data.text,
@@ -58,7 +57,7 @@ class EditPost extends Component {
     const { text, image, tags } = this.state;
     return (
       <div className="container">
-        <PageHeader titleText="Edit Your Post" />
+        <PageHeader titleText="Edit Your Post" className="text-center page-header" />
         <div className="row">
           <div className="col-12">
             <h4 className="text-center">Fill in your post details here</h4>
@@ -83,7 +82,6 @@ class EditPost extends Component {
                 tags: yup.array(),
               })}
               onSubmit={async (values) => {
-                console.log(values);
                 const { post_id } = this.props.match.params;
                 const { history } = this.props;
                 try {

@@ -48,10 +48,10 @@ class Feed extends Component {
     }
     return (
       <div className="container-fluid feed">
-        <PageHeader titleText="Kdog Feed" className="text-center" />
+        <PageHeader titleText="Kdog Feed" className="text-center page-header" />
         <div className="row m-auto">
           {!user && (
-            <div className="col-12 mt-2">
+            <div className="col-12 mt-2 page-subHeader">
               <h4 className="text-center">
                 Login or signup in order to create or like posts
               </h4>
@@ -74,9 +74,9 @@ class Feed extends Component {
             onChange={posts && this.searchPostsHandler}
           />
         </div>
-        <div className="">
+        <div>
           {posts.length === 0 ? (
-            <h2 className="user-message">
+            <h2 className="user-message text-center">
               There are currently no posts on Kdog app
             </h2>
           ) : (

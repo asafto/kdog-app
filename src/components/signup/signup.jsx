@@ -60,14 +60,14 @@ class Signup extends Form {
 
     return (
       <div className=" signup container">
-        <PageHeader titleText="Sign up for Kdog app" />
+        <PageHeader titleText="Sign up for Kdog app" className="text-center page-header" />
         <div className="row">
           <div className="col-12">
             <h4 className="text-center">Open a new Kdog account for free</h4>
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-6 m-auto">
+          <div className="col-md-8 col-lg-6 m-auto">
             <form onSubmit={this.handleSubmit} autoComplete="off" noValidate>
               {this.renderInput('name', '* Name', 'name')}
               {this.renderInput('email', '* Email', 'email')}

@@ -14,6 +14,7 @@ import CreatePost from './components/createPost/createPost';
 import DeletePost from './components/deletePost/deletePost';
 import EditPost from './components/editPost/editPost';
 import LikePost from './components/likePost/likePost';
+import Chat from './components/chat/chat';
 import ProtectedRoute from './components/common/protectedRoute';
 
 import userService from './services/userService';
@@ -48,6 +49,7 @@ class App extends Component {
               path="/feed"
               render={(props) => <Feed {...props} user={user} />}
             />
+            <Route path="/chat" component={Chat} />
             <Route path="/logout" component={Logout} />
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />

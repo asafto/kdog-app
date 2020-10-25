@@ -33,7 +33,7 @@ class CreatePost extends Component {
   render() {
     return (
       <div className="container">
-        <PageHeader titleText="Create a New Post" />
+        <PageHeader titleText="Create a New Post" className="text-center page-header" />
         <div className="row">
           <div className="col-12">
             <h4 className="text-center">Share the love and memories here</h4>

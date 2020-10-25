@@ -12,7 +12,6 @@ import {
 import TagsList from '../tagList/tagList';
 
 import userService from '../../services/userService';
-import postService from '../../services/postService';
 import { imageUrl } from '../../config.json';
 
 import './post.scss';
@@ -20,7 +19,6 @@ import './post.scss';
 class Post extends Component {
   state = {
     author: '',
-    likes: []
   };
 
   async componentDidMount() {
@@ -36,7 +34,7 @@ class Post extends Component {
     const { author } = this.state;
     const authorName = author && author.name.split(' ')[0];
     return (
-      <div className="card col-11 col-md-5 col-lg-3 m-3">
+      <div className="card col-10 col-md-5 col-lg-3 m-2">
         <div className="card-header d-flex align-items-center justify-content-between p-2">
           <div className="user-box d-flex align-items-center">
             <FaUserCircle className="user-icon" />
@@ -60,7 +58,7 @@ class Post extends Component {
               className="action-button"
               disabled={signedInUser ? false : true}>
               <Link to={`/likePost/${post._id}`}>
-                {post.likes.length > 0 && post.likes.includes(signedInUser._id) ? (
+                {signedInUser && post.likes.length > 0 && post.likes.includes(signedInUser._id) ? (
                   <AiFillLike className="sm-custom-icon liked" />
                 ) : (
                     <AiFillLike className="custom-icon" />

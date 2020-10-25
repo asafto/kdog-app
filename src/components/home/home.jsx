@@ -9,8 +9,8 @@ class Home extends Component {
   render() {
     return (
       <div className="container home">
-        <PageHeader titleText="Kdog App" className="text-center" />
-        <div className="row m-auto">
+        <PageHeader titleText="Kdog App" className="text-center page-header" />
+        <div className="row m-auto home-text">
           <div className="col-12 mt-2">
             <h4 className="text-center">Made With Love For All Dog Lovers</h4>
             <p className="text-center">Post pictures and share the love</p>
@@ -19,7 +19,7 @@ class Home extends Component {
             <p className="text-center">Buy dog products with Kdog discounts</p>
           </div>
         </div>
-        <div className="col-12 col-md-11 col-lg-5 m-auto">
+        <div className="col-12 col-md-11 col-lg-5 mx-auto home-image">
           <img
             src="../././miko.jpg"
             alt="Miko"
