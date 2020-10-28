@@ -1,7 +1,7 @@
 import React from 'react';
 import Joi from 'joi-browser';
 
-import { Redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 
 import Form from '../common/form';
 import PageHeader from '../common/pageHeader';
@@ -39,11 +39,15 @@ class Signin extends Form {
   };
 
   render() {
-    if (userService.getCurrentUser()) return <Redirect to="/" />;
+    if (userService.getCurrentUser())
+      return <Redirect to="https://asafto-kdog-app.netlify.app/feed" />;
 
     return (
       <div className="signin container">
-        <PageHeader titleText="Sign in with your details" className="text-center page-header" />
+        <PageHeader
+          titleText="Sign in with your details"
+          className="text-center page-header"
+        />
         <div className="row">
           <div className="col-12 page-subHeader">
             <h4 className="text-center">Login and join the party!</h4>
