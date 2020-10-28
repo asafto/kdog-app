@@ -1,6 +1,8 @@
 .card {
-  min-width: 320px;
+  min-width: 280px;
   border-radius: 10px !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
   box-shadow: 8px 8px 3px 0px rgba(0, 0, 0, 0.2);
   .user-box {
     font-size: 0.9rem;
