@@ -35,7 +35,7 @@ class Post extends Component {
 
     return (
       <div className="card col-9 col-md-5 col-lg-3 m-2 px-0">
-        <div className="card-header d-flex align-items-center justify-content-between p-2">
+        <div className="card-header d-flex align-items-center justify-content-between px-1">
           <div className="user-box d-flex align-items-center">
             <FaUserCircle className="user-icon" />
             {author && <span className="pl-2">{authorName}</span>}
@@ -44,13 +44,13 @@ class Post extends Component {
             <Moment format="MMM-DD-YYYY, HH:mm">{post.createdAt}</Moment>
           </div>
         </div>
-        <div className="card-body px-2 post-text">
+        <div className="card-body p-2 post-text">
           <p>{post.text}</p>
         </div>
         <img
           src={post.imageLocation}
           alt={post.image}
-          className="w-100 post-image"
+          className="post-image"
         />
         <div className="d-flex flex-row justify-content-between align-items-center p-2">
           <div className="d-flex flex-row justify-content-center align-items-center">

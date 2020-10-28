@@ -4,7 +4,7 @@
   box-shadow: 8px 8px 3px 0px rgba(0, 0, 0, 0.2);
   .user-box {
     font-size: 0.9rem;
-    margin-left: -8px;
+    // margin-left: -8px;
     .user-icon {
       height: 1.5rem;
       width: 1.5rem;
@@ -13,16 +13,17 @@
   }
   .date-box {
     font-size: 0.8rem;
-    margin-right: -8px;
+    // margin-right: -8px;
   }
   .post-text {
-    display: inline-block;
-    vertical-align: middle;
+    // display: inline-block;
+    // vertical-align: middle;
     height: 70px;
     overflow: hidden;
   }
   .post-image {
     height: 200px;
+    width: 100%;
     object-fit: cover;
     object-position: center center;
   }
@@ -45,7 +46,7 @@
     width: 1.5rem;
     color: #6e426b;
     padding-bottom: 7px;
-    &.liked{
+    &.liked {
       color: hotpink;
     }
   }
@@ -54,11 +55,11 @@
     width: 1.6rem;
     color: #6e426b;
     padding-bottom: 7px;
-    &.liked{
+    &.liked {
       color: hotpink;
     }
   }
-  
+
   .TagList {
     .tag {
       a {
@@ -66,7 +67,8 @@
         font-size: 0.9rem;
         color: #faebd7;
         background: #4f6e42;
-        margin-right: 0.2rem;
+        margin-left: 0.4rem;
+        margin-bottom: 0.4rem;
         padding: 0.1rem 0.2rem;
         border-radius: 0.2rem;
       }
