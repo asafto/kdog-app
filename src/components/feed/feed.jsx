@@ -47,7 +47,7 @@ class Feed extends Component {
       );
     }
     return (
-      <div className="container-fluid feed">
+      <div className="feed">
         <PageHeader titleText="Kdog Feed" className="text-center page-header" />
         <div className="row m-auto">
           {!user && (
@@ -58,42 +58,47 @@ class Feed extends Component {
             </div>
           )}
         </div>
-        <div className="page-actions d-flex col-12 col-md-6 justify-content-center m-auto">
-          {user && (
-            <Link
-              className="kdog-submit-button text-decoration-none"
-              to="/createPost">
-              Add Post
-            </Link>
-          )}
-          <input
-            className="search-box"
-            type="search"
-            placeholder="Search Posts by Tags"
-            aria-label="Search"
-            onChange={posts && this.searchPostsHandler}
-          />
+        <div className="row m-auto">
+          <div className="page-actions d-flex col-12 col-md-6 justify-content-center m-auto">
+            {user && (
+              <Link
+                className="kdog-submit-button text-decoration-none"
+                to="/createPost">
+                Add Post
+              </Link>
+            )}
+            {posts.length > 0 ? (
+              <input
+                className="search-box"
+                type="search"
+                placeholder="Search Posts by Tags"
+                aria-label="Search"
+                onChange={posts && this.searchPostsHandler}
+              />
+            ) : null}
+          </div>
+          {posts.length === 0 ? (
+            <div className="col-12 mt-2 page-subHeader">
+              <h4 className="text-center">
+                There are currently no posts on kdog app!
+              </h4>
+            </div>
+          ) : null}
         </div>
         <div>
-          {posts.length === 0 ? (
-            <h2 className="user-message text-center">
-              There are currently no posts on Kdog app
-            </h2>
-          ) : (
-            <div className="row justify-content-center mb-2">
-              {filteredPosts.length === 0
-                ? posts.map((post) => {
-                    return (
-                      <Post key={post._id} post={post} signedInUser={user} />
-                    );
-                  })
-                : filteredPosts.map((post) => {
-                    return (
-                      <Post key={post._id} post={post} signedInUser={user} />
-                    );
-                  })}
-            </div>
-          )}
+          <div className="row justify-content-center mb-2">
+            {filteredPosts.length === 0
+              ? posts.map((post) => {
+                  return (
+                    <Post key={post._id} post={post} signedInUser={user} />
+                  );
+                })
+              : filteredPosts.map((post) => {
+                  return (
+                    <Post key={post._id} post={post} signedInUser={user} />
+                  );
+                })}
+          </div>
         </div>
       </div>
     );

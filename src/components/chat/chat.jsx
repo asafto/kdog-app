@@ -1,10 +1,12 @@
 import React from 'react';
 import PageHeader from '../common/pageHeader';
 
+import './chat.scss';
+
 const Chat = () => {
   return (
     <React.Fragment>
-      <div className="container-fluid feed">
+      <div className="container-fluid chat">
         <PageHeader titleText="Kdog Chat" className="text-center page-header" />
       </div>
       <div className="row m-auto">

@@ -1,7 +1,7 @@
 import React from 'react';
 import Joi from 'joi-browser';
 
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 
 import Form from '../common/form';
 import PageHeader from '../common/pageHeader';
@@ -25,7 +25,7 @@ class Signin extends Form {
     const { email, password } = this.state.data;
     try {
       await userService.login(email, password);
-      window.location = "/"; //refresh the page to get the token, as we do not have global state --> improve with redux or mobex
+      window.location = '/feed'; //refresh the page to get the token, as we do not have global state --> improve with redux or mobex
     } catch (error) {
       if (error.response && error.response.status === 400) {
         this.setState({
@@ -43,10 +43,7 @@ class Signin extends Form {
 
     return (
       <div className="signin container">
-        <PageHeader
-          titleText="Sign in with your details"
-          className="text-center page-header"
-        />
+        <PageHeader titleText="Sign in with your details" className="text-center page-header" />
         <div className="row">
           <div className="col-12 page-subHeader">
             <h4 className="text-center">Login and join the party!</h4>

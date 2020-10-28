@@ -59,7 +59,7 @@ class Signup extends Form {
     if (userService.getCurrentUser()) return <Redirect to="/" />;
 
     return (
-      <div className=" signup container">
+      <div className="signup container">
         <PageHeader titleText="Sign up for Kdog app" className="text-center page-header" />
         <div className="row">
           <div className="col-12 page-subHeader">

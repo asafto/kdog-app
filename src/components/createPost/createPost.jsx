@@ -32,7 +32,7 @@ class CreatePost extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container create-post">
         <PageHeader titleText="Create a New Post" className="text-center page-header" />
         <div className="row">
           <div className="col-12">
@@ -104,7 +104,7 @@ class CreatePost extends Component {
                             event.currentTarget.files[0]
                           );
                           document.querySelector('#file-name').innerHTML =
-                            event.currentTarget.files[0].name;
+                          event.currentTarget.files[0] && event.currentTarget.files[0].name;
                         }}
                       />
                       <span

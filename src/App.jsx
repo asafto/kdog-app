@@ -36,10 +36,10 @@ class App extends Component {
     return (
       <div className="d-flex flex-column min-vh-100">
         <ToastContainer autoClose={5000} />
-        <header>
+        <header className="header">
           <Navbar user={user} />
         </header>
-        <main className="container flex-fill pb-2">
+        <main className="container pb-2">
           <Switch>
             <ProtectedRoute path="/createPost" component={CreatePost} />
             <ProtectedRoute path="/deletePost/:post_id" component={DeletePost} />

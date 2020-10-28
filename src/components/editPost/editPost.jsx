@@ -57,7 +57,7 @@ class EditPost extends Component {
   render() {
     const { text, image, originalImageName, originalImageKey, tags } = this.state;
     return (
-      <div className="container">
+      <div className="container edit-post">
         <PageHeader
           titleText="Edit Your Post"
           className="text-center page-header"
