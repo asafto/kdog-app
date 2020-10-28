@@ -34,7 +34,7 @@ class Post extends Component {
     const authorName = author && author.name.split(' ')[0];
 
     return (
-      <div className="card col-9 col-md-5 col-lg-3 m-2">
+      <div className="card col-9 col-md-5 col-lg-3 m-2 px-0">
         <div className="card-header d-flex align-items-center justify-content-between p-2">
           <div className="user-box d-flex align-items-center">
             <FaUserCircle className="user-icon" />
