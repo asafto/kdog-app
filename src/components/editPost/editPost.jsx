@@ -16,19 +16,20 @@ class EditPost extends Component {
     text: '',
     image: null,
     tags: [],
-    imageName: '',
+    originalImageName: '',
+    originalImageKey: '',
+    originalImageLocation: '',
   };
   async componentDidMount() {
     const { post_id } = this.props.match.params;
-    const { data } = await postService.getPost(post_id);
-    const imageName = data.image.split('__')[1];
-    const fileObj = await postService.getPostImage(data._id, data.image);
+    const post = await postService.getPost(post_id);
 
     this.setState({
-      text: data.text,
-      tags: data.tags,
-      image: fileObj,
-      imageName: imageName,
+      text: post.data.text,
+      tags: post.data.tags,
+      originalImageName: post.data.image,
+      originalImageKey: post.data.imageKey,
+      originalImageLocation: post.data.imageLocation
     });
   }
 
@@ -54,10 +55,13 @@ class EditPost extends Component {
   };
 
   render() {
-    const { text, image, tags } = this.state;
+    const { text, image, originalImageName, originalImageKey, tags } = this.state;
     return (
       <div className="container">
-        <PageHeader titleText="Edit Your Post" className="text-center page-header" />
+        <PageHeader
+          titleText="Edit Your Post"
+          className="text-center page-header"
+        />
         <div className="row">
           <div className="col-12">
             <h4 className="text-center">Fill in your post details here</h4>
@@ -85,11 +89,8 @@ class EditPost extends Component {
                 const { post_id } = this.props.match.params;
                 const { history } = this.props;
                 try {
-                  if (
-                    document.querySelector('#file-name').innerHTML ===
-                    this.state.imageName
-                  ) {
-                    values.image = this.state.image;
+                  if (!this.state.image) {
+                    values.image = await postService.getPostImage(originalImageKey);
                   }
                   const formData = this.convertToFormData(values);
                   await postService.editPost(post_id, formData);
@@ -149,7 +150,7 @@ class EditPost extends Component {
                         className="custom-file-label"
                         id="file-name"
                         name="file-name">
-                        {this.state.imageName}
+                        {this.state.imageName || originalImageName}
                       </span>
                     </div>
                     {formik.touched.image && formik.errors.image ? (

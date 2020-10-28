@@ -12,7 +12,6 @@ import {
 import TagsList from '../tagList/tagList';
 
 import userService from '../../services/userService';
-import { imageUrl } from '../../config.json';
 
 import './post.scss';
 
@@ -33,6 +32,7 @@ class Post extends Component {
     const { post, signedInUser } = this.props;
     const { author } = this.state;
     const authorName = author && author.name.split(' ')[0];
+
     return (
       <div className="card col-10 col-md-5 col-lg-3 m-2">
         <div className="card-header d-flex align-items-center justify-content-between p-2">
@@ -48,7 +48,7 @@ class Post extends Component {
           <p>{post.text}</p>
         </div>
         <img
-          src={`${imageUrl}/${post.image}`}
+          src={post.imageLocation}
           alt={post.image}
           className="w-100 post-image"
         />
