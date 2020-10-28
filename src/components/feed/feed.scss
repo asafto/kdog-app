@@ -21,6 +21,13 @@
 }
 
 @media (max-width: 992px) {
+  .loader {
+    width: 50%;
+    height: 500vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .page-header {
     font-size: 3rem;
   }
@@ -33,7 +40,7 @@
     margin-top: 1rem;
     .kdog-submit-button {
       font-size: 1rem;
-      width: 6rem;
+      width: 7rem;
       text-align: center;
       padding: 3px;
     }
@@ -44,10 +51,18 @@
   .user-message{
     font-size: 2.6rem;
     line-height: 3.5rem;
+    margin-top: 1rem;
   }
 }
 
 @media (max-width: 576px) {
+  .loader {
+    width: 50%;
+    height: 500vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .page-header {
     font-size: 2rem;
   }
@@ -58,10 +73,10 @@
   }
   .page-actions {
     .kdog-submit-button {
-      width: 8rem;
       font-size: 0.9rem;
+      width: 8rem;
       text-align: center;
-      padding: 0.6rem 0 0.6rem 0;
+      padding: 0.2rem 0 0.2rem 0;
     }
     .search-box {
       font-size: 0.9rem;
@@ -70,5 +85,6 @@
   .user-message{
     font-size: 1.8rem;
     line-height: 2.2rem;
+    margin-top: 1rem;
   }
 }
