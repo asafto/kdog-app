@@ -39,7 +39,7 @@ class App extends Component {
         <header className="header">
           <Navbar user={user} />
         </header>
-        <main className="container pb-2">
+        <main className="container main">
           <Switch>
             <ProtectedRoute path="/createPost" component={CreatePost} />
             <ProtectedRoute path="/deletePost/:post_id" component={DeletePost} />
