@@ -25,7 +25,7 @@ class Signin extends Form {
     const { email, password } = this.state.data;
     try {
       await userService.login(email, password);
-      window.location = 'https://asafto-kdog-app.netlify.app/feed'; //refresh the page to get the token, as we do not have global state --> improve with redux or mobex
+      window.location = 'https://asafto-kdog-app.netlify.app/'; //refresh the page to get the token, as we do not have global state --> improve with redux or mobex
     } catch (error) {
       if (error.response && error.response.status === 400) {
         this.setState({
