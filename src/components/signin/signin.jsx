@@ -40,7 +40,7 @@ class Signin extends Form {
 
   render() {
     if (userService.getCurrentUser())
-      return <Redirect to="https://asafto-kdog-app.netlify.app/feed" />;
+      return <Redirect to="https://asafto-kdog-app.netlify.app" />;
 
     return (
       <div className="signin container">
