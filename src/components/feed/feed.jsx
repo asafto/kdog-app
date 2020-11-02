@@ -28,6 +28,10 @@ class Feed extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.setState({ isLoading: true });
+  }
+
   searchPostsHandler = (event) => {
     const filteredPosts = this.state.posts.filter((post) =>
       post.tags.includes(event.target.value)
