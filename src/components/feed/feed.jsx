@@ -14,6 +14,7 @@ class Feed extends Component {
     posts: [],
     filteredPosts: [],
     isLoading: true,
+    filterStatus: false,
   };
 
   async componentDidMount() {
@@ -22,30 +23,40 @@ class Feed extends Component {
       this.setState({
         isLoading: false,
         posts: [...data],
+        filteredPosts: [],
       });
     } else {
       this.setState({ isLoading: false });
     }
   }
 
-  componentWillUnmount() {
-    this.setState({ isLoading: true });
-  }
-
   searchPostsHandler = (event) => {
-    const filteredPosts = this.state.posts.filter((post) =>
-      post.tags.includes(event.target.value)
+    const searchText = event.target.value.trim().toLowerCase();
+    const filteredPosts = this.state.posts.filter(
+      (post) =>
+        post.tags.map((tag) => tag.toLowerCase()).includes(searchText) ||
+        post.text.toLowerCase().indexOf(searchText) !== -1
     );
-    this.setState({ filteredPosts });
+    if (filteredPosts.length > 0) {
+      this.setState({
+        filteredPosts,
+        filterStatus: true,
+      });
+    } else {
+      this.setState({
+        filteredPosts: [],
+        filterStatus: true,
+      });
+    }
   };
 
   render() {
     const { user } = this.props;
-    const { posts, filteredPosts, isLoading } = this.state;
+    const { posts, filteredPosts, filterStatus, isLoading } = this.state;
 
     if (isLoading) {
       return (
-        <div className="loader">
+        <div className="loader col-lg-4 col-12 text-center mx-auto mt-5 ">
           <BeatLoader color={'#4f6e42'} size={60} sizeUnit={'px'} />
         </div>
       );
@@ -75,7 +86,7 @@ class Feed extends Component {
               <input
                 className="search-box"
                 type="search"
-                placeholder="Search Posts by Tags"
+                placeholder="Search Posts..."
                 aria-label="Search"
                 onChange={posts && this.searchPostsHandler}
               />
@@ -89,21 +100,25 @@ class Feed extends Component {
             </div>
           ) : null}
         </div>
-        <div>
+        {filteredPosts.length === 0 && !filterStatus ? (
           <div className="row justify-content-center mb-2">
-            {filteredPosts.length === 0
-              ? posts.map((post) => {
-                  return (
-                    <Post key={post._id} post={post} signedInUser={user} />
-                  );
-                })
-              : filteredPosts.map((post) => {
-                  return (
-                    <Post key={post._id} post={post} signedInUser={user} />
-                  );
-                })}
+            {posts.map((post) => {
+              return <Post key={post._id} post={post} signedInUser={user} />;
+            })}
           </div>
-        </div>
+        ) : null}
+        {filteredPosts.length === 0 && filterStatus ? (
+          <div className="alert alert-danger col-lg-4 col-8 mx-auto text-center mt-5" role="alert">
+            No posts found...
+          </div>
+        ) : null}
+        {filteredPosts.length > 0 && filterStatus ? (
+          <div className="row justify-content-center mb-2">
+            {filteredPosts.map((post) => {
+              return <Post key={post._id} post={post} signedInUser={user} />;
+            })}
+          </div>
+        ) : null}
       </div>
     );
   }

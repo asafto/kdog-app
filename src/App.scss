@@ -1,12 +1,5 @@
-.header{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index:2;
-}
-.main{
-  min-height: 95vh;
+main.main {
+  margin-bottom: 3rem;
 }
 .kdog-submit-button {
   background: #6e426b !important;
